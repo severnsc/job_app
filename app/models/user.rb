@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
          :confirmable
+  has_many :tasks
 
   def full_name
     "#{first_name.capitalize} #{last_name.capitalize}"
