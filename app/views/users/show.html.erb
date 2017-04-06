@@ -16,22 +16,26 @@
       <%= f.submit "Create Task", class: 'btn btn-primary' %>
 
     <% end %>
-    <% if @user.reload.tasks.any? %>
+    <% if @user.uncompleted_tasks.any? %>
       <div class="tasks">
-        <h1>Tasks</h1>
-        <% @user.tasks.each do |task| %>
+        <h1>Todo Tasks</h1>
+        <% @user.uncompleted_tasks.each do |task| %>
           <div class="task">
             <h3><%= task.name %></h3>
             <p><%= task.description %></p>
-            <p>Due: <%= task.due_date.strftime("%-m/%e/%Y %l:%M %p") %></p>
-            <% if task.completed? %>
-              <button class="btn">Task completed</button>
-            <% else %>
-              <%= form_for task do |f| %>
-                <%= f.hidden_field :completed, value: "true" %>
-                <%= f.submit "Complete Task", class: "btn btn-primary" %>
-              <% end %>
-            <% end %>
+            <p><%= task.due_date.strftime("%-m/%e/%Y %l:%M %p") %></p>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+    <% if @user.completed_tasks.any? %>
+      <div class="tasks">
+        <h1>Completed Tasks</h1>
+        <% @user.completed_tasks.each do |task| %>
+          <div class="task">
+            <h3><%= task.name %></h3>
+            <p><%= task.description %></p>
+            <p><%= task.due_date.strftime("%-m/%e/%Y %l:%M %p") %></p>
           </div>
         <% end %>
       </div>
