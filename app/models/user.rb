@@ -11,12 +11,10 @@ class User < ApplicationRecord
   end
 
   def uncompleted_tasks
-    task_list = []
-    task_list << tasks.find_by_completed(false)
+    tasks.where("completed = ?", false)
   end
 
   def completed_tasks
-    task_list = []
-    task_list << tasks.find_by_completed(true)
+    tasks.where("completed = ?", true)
   end
 end

@@ -18,7 +18,7 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:id])
     if params[:task][:completed] == "true"
-      @task.update_attribute(:completed, true)
+      @task.update_attributes(completed: true, completed_at: Time.zone.now)
       flash[:success] = "Task completed!"
       redirect_to current_user
     end
