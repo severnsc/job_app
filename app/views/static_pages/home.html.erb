@@ -1,5 +1,50 @@
 <div class="row">
   <div class="center jumbotron">
-    <h1>Job App</h1>
+    <h1>Chris Severns</h1>
+    <%= image_tag('chris.jpg', size: '300', class: 'img-circle') %>
+    <p>Chris Severns is a young and ambitious Rails developer seeking a Junior Developer position at an exciting and forward thinking tech company. This portfolio site is designed to show you some of the great projects Chris has worked on.</p>
+  </div>
+  <div class="col-md-10 col-md-offset-1" id="chris-projects">
+    <h1 class="center">Chris' Projects</h1>
+    <div class="col-md-4">
+      <h2>Oasis Title App</h2>
+      <%= link_to image_tag('logo.jpg', class: 'img-center'), "https://oasis-title-app.herokuapp.com" %>
+      <%= link_to "Github", "https://github.com/severnsc/oasis-title-app", class: 'a-center' %>
+    </div>
+    <div class="col-md-4">
+      <h2>API Example</h2>
+      <%= link_to "Client Github", "https://github.com/severnsc/test-api-client", class: 'a-center' %>
+      <%= link_to "Server Github", "https://github.com/severnsc/testing-api-server", class: 'a-center' %>
+    </div>
+    <div class="col-md-4">
+      <h2>Facebook Clone</h2>
+      <%= link_to "Heroku Deployment", "https://stormy-garden-51940.herokuapp.com/", class: 'a-center' %>
+      <%= link_to "Github", "https://github.com/severnsc/facebook-clone", class: 'a-center' %>
+    </div>
+  </div>
+  <div class="col-md-10 col-md-offset-1" id="testimonials">
+    <h1>Chris' Testimonials</h1>
+    <div class="col-md-4">
+      <%= image_tag('chris.jpg', size:'300', class: 'img-circle') %>
+      <h2>Larry Weisberg</h2>
+      <p class="center">Owner - Oasis Title Company</p>
+      <p class="text-justify">Chris has worked for me for 2 years. When he first started he didn't have any experience working with tech or code. Since then, he's shown a desire to learn and grow. He is constantly working to improve all of our IT systems and has coded a great website for us that really helps in our day to day. He's been a fantastic asset for this company!</p>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag('chris.jpg', size:'300', class: 'img-circle') %>
+      <h2>Casey Cleveland</h2>
+      <p class="center">Senior Pastor - The Avenue Church</p>
+      <p class="text-justify">Chris built us a great website that helps us keep in communication with our congregation and get feedback from them. He also deployed it to a mobile app which was really helpful for our users. I can't speak highly enough about his work and drive to make great products.</p>
+    </div>
+    <div class="col-md-4">
+      <%= image_tag('chris.jpg', size:'300', class: 'img-circle') %>
+      <h2>Matt Corwin</h2>
+      <p class="center">Owner - Corwin Water Sports</p>
+      <p class="text-justify">Chris built a website for my company. It is a huge improvement over my old website as parents can now fill out waivers and make payments online right on my website. It looks great and functions well on all devices. It's really helped my business flourish!</p>
+    </div>
+  </div>
+  <div class="col-md-10 col-md-offset-1">
+    <h1>Chris' Resume</h1>
+    <%= link_to "Download Resume", '#', class: 'a-center' %>
   </div>
 </div>

@@ -17,6 +17,16 @@ $gray-medium-light: #eaeaea;
   display:inline;
 }
 
+.img-center{
+  display: block;
+  margin: auto;
+}
+
+.a-center{
+  display: block;
+  text-align: center;
+}
+
 .checkbox input[type='checkbox']{
   margin-left: 0px;
 }
@@ -111,7 +121,6 @@ footer {
   padding-top: 5px;
   border-top: 1px solid $gray-medium-light;
   color: $gray-light;
-  background-color: black;
   height:auto;
   a {
     color: $gray;
@@ -214,7 +223,12 @@ input{
   }
 }
 
-/* Friend Buttons */
-a.btn{
-  width:100%;
+/* Home Page */
+#chris-projects{
+  padding-bottom: 10px;
+  border-bottom: 1px solid $gray-medium-light;
+}
+
+#testimonials{
+  border-bottom: 1px solid $gray-medium-light;
 }
