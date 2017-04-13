@@ -16,11 +16,10 @@ ActiveRecord::Schema.define(version: 20170412233203) do
   enable_extension "plpgsql"
 
   create_table "reminders", force: :cascade do |t|
-    t.string   "day_of_the_week"
-    t.time     "time"
+    t.datetime "datetime"
     t.integer  "task_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_reminders_on_task_id", using: :btree
   end
 
