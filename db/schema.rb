@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170406205700) do
+ActiveRecord::Schema.define(version: 20170412233203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reminders", force: :cascade do |t|
+    t.string   "day_of_the_week"
+    t.time     "time"
+    t.integer  "task_id"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+    t.index ["task_id"], name: "index_reminders_on_task_id", using: :btree
+  end
 
   create_table "tasks", force: :cascade do |t|
     t.string   "name"

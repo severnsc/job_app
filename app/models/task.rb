@@ -1,5 +1,6 @@
 class Task < ApplicationRecord
   validates :name, presence: true
-  validates :description, length: {maximum: 255}
+  validates :description, presence: true,length: {maximum: 255}
   belongs_to :user
+  has_many :reminders
 end
