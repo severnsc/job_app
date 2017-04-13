@@ -3,5 +3,6 @@ class UsersController < ApplicationController
 
   def show
     @user = current_user
+    @task = @user.tasks.build
   end
 end

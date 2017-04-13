@@ -2,7 +2,7 @@
   <div class="col-md-6 col-md-offset-3">
     <h1><%= @user.full_name %></h1>
     <h2>Create a new task</h2>
-    <%= form_for @user.tasks.build do |f| %>
+    <%= form_for @task do |f| %>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
@@ -12,6 +12,57 @@
 
       <%= f.label :due_date %>
       <%= f.datetime_local_field :due_date, class: 'form-control' %>
+
+      <%= f.fields_for @task.reminders.build do |reminder| %>
+
+        <%= f.label :datetime, class: 'checkbox inline' do %>
+          
+          <div>
+            <%= check_box_tag "sunday"  %>
+            <span>Sunday</span>
+            <%= time_field_tag "sunday_time", Time.now, class: 'time_box' %>
+          </div>
+
+
+          <div>
+            <%= check_box_tag "monday"  %>
+            <span>Monday</span>
+            <%= time_field_tag "monday_time", Time.now, class: 'time_box' %>
+          </div>
+
+          <div>
+            <%= check_box_tag "tuesday"  %>
+            <span>Tuesday</span>
+            <%= time_field_tag "tuesday_time", Time.now, class: 'time_box' %>
+          </div>
+
+          <div>
+            <%= check_box_tag "wednesday"  %>
+            <span>Wednesday</span>
+            <%= time_field_tag "wednesday_time", Time.now, class: 'time_box' %>
+          </div>
+
+          <div>
+            <%= check_box_tag "thursday"  %>
+            <span>Thursday</span>
+            <%= time_field_tag "thursday_time", Time.now, class: 'time_box' %>
+          </div>
+
+          <div>
+            <%= check_box_tag "friday" %>
+            <span>Friday</span>
+            <%= time_field_tag "friday_time", Time.now, class: 'time_box' %>
+          </div>
+
+          <div>
+            <%= check_box_tag "saturday"  %>
+            <span>Saturday</span>
+            <%= time_field_tag "saturday_time", Time.now, class: 'time_box' %>
+          </div> 
+
+        <% end %>
+
+      <% end %>
 
       <%= f.submit "Create Task", class: 'btn btn-primary' %>
 
