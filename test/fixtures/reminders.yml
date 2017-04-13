@@ -1,4 +1,3 @@
 reminder:
-  day_of_the_week: "Monday"
-  time: <%= Time.new(Date.today.year, Date.today.month, Date.today.day, 1,0,0) %>
+  datetime: <%= DateTime.now %>
   task: task
