@@ -18,47 +18,49 @@
         <%= f.label :datetime, class: 'checkbox inline' do %>
           
           <div>
-            <%= check_box_tag "sunday"  %>
+            <%= check_box_tag "days[sunday]"  %>
             <span>Sunday</span>
             <%= time_field_tag "sunday_time", Time.now, class: 'time_box' %>
           </div>
 
 
           <div>
-            <%= check_box_tag "monday"  %>
+            <%= check_box_tag "days[monday]"  %>
             <span>Monday</span>
             <%= time_field_tag "monday_time", Time.now, class: 'time_box' %>
           </div>
 
           <div>
-            <%= check_box_tag "tuesday"  %>
+            <%= check_box_tag "days[tuesday]"  %>
             <span>Tuesday</span>
             <%= time_field_tag "tuesday_time", Time.now, class: 'time_box' %>
           </div>
 
           <div>
-            <%= check_box_tag "wednesday"  %>
+            <%= check_box_tag "days[wednesday]"  %>
             <span>Wednesday</span>
             <%= time_field_tag "wednesday_time", Time.now, class: 'time_box' %>
           </div>
 
           <div>
-            <%= check_box_tag "thursday"  %>
+            <%= check_box_tag "days[thursday]"  %>
             <span>Thursday</span>
             <%= time_field_tag "thursday_time", Time.now, class: 'time_box' %>
           </div>
 
           <div>
-            <%= check_box_tag "friday" %>
+            <%= check_box_tag "days[friday]" %>
             <span>Friday</span>
             <%= time_field_tag "friday_time", Time.now, class: 'time_box' %>
           </div>
 
           <div>
-            <%= check_box_tag "saturday"  %>
+            <%= check_box_tag "days[saturday]"  %>
             <span>Saturday</span>
             <%= time_field_tag "saturday_time", Time.now, class: 'time_box' %>
-          </div> 
+          </div>
+
+          <%= hidden_field_tag "time_zone", Time.now.zone %>
 
         <% end %>
 
