@@ -18,6 +18,7 @@ gem 'figaro'
 gem 'rails-controller-testing'
 gem 'devise'
 gem 'twilio-ruby'
+gem 'delayed_job_active_record'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views

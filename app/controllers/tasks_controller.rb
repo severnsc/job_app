@@ -5,20 +5,13 @@ class TasksController < ApplicationController
     if @task.save
       @days = params[:days]
       @days.each do |day, value|
-      if value == '1'
-        #Create a reminder for each weekday corresponding to the day selected at the time selected until the due date
-        datetime = DateTime.now + 1.day
-        time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
-        until datetime >= params[:task][:due_date]
-          if datetime.strftime("%A").downcase == day
-            @task.reminders.create(datetime: datetime.change({hour: time.hour, minute: time.min}))
-            datetime += 7.days
-          else
-            datetime += 1.day
-          end
+        if value == '1'
+          time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
+          @task.create_reminders(day, time)
         end
       end
-    end
+      current_user.send_confirmation_reminder_text
+      current_user.create_future_reminder_texts(@task)
       flash[:success] = "Task created!"
       redirect_to current_user
     else

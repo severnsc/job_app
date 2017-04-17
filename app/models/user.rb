@@ -23,4 +23,29 @@ class User < ApplicationRecord
   def completed_tasks
     tasks.where("completed = ?", true)
   end
+
+  def new_twilio_client
+    @client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
+  end
+
+  def send_confirmation_reminder_text
+    @client = new_twilio_client
+    @client.messages.create(
+      from: ENV['PHONE_NUMBER'],
+      to: phone_number,
+      body: 'Your task has been created!'
+    )
+  end
+
+  def create_future_reminder_texts(task)
+    @client = new_twilio_client
+    task.reminders.each do |reminder|
+      @client.messages.delay(run_at: reminder.datetime).create(
+        from: ENV['PHONE_NUMBER'],
+        to: phone_number,
+        body: task.description
+      )
+    end
+  end
+
 end
