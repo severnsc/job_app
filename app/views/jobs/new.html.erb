@@ -1,0 +1,42 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Create a New Job</h1>
+    <%= form_for @job do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :position %>
+      <%= f.text_field :position, class: 'form-control' %>
+
+      <%= f.label :company %>
+      <%= f.text_field :company, class: 'form-control' %>
+
+      <%= f.label :contact_name %>
+      <%= f.text_field :contact_name, class: 'form-control' %>
+
+      <%= f.label :contact_phone %>
+      <%= f.text_field :contact_phone, class: 'form-control' %>
+
+      <%= f.label :contact_email %>
+      <%= f.text_field :contact_email, class: 'form-control' %>
+
+      <%= f.label :location %>
+      <%= f.text_field :location, class: 'form-control' %>
+
+      <%= f.label :pay %>
+      <%= f.text_field :pay, class: 'form-control' %>
+
+      <%= f.label :benefits %>
+      <%= f.text_area :benefits, class: 'form-control' %>
+
+      <%= f.label :responsibilities %>
+      <%= f.text_area :responsibilities, class: 'form-control' %>
+
+      <%= f.label :requirements %>
+      <%= f.text_area :requirements, class: 'form-control' %>
+
+      <%= f.submit "Create job", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>

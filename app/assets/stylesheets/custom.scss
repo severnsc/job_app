@@ -242,3 +242,13 @@ input{
 .checkbox input[type='checkbox']{
   width:inherit;
 }
+
+/* Jobs index page */
+#new_job_button{
+  display: block;
+  margin: auto;
+}
+
+#new_job_button > a{
+  color: white;
+}
