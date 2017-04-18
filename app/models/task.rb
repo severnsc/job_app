@@ -5,11 +5,11 @@ class Task < ApplicationRecord
   has_many :reminders
   accepts_nested_attributes_for :reminders
 
-  def create_reminders(day, time)
-    datetime = DateTime.now + 1.day
+  def create_reminders(day, time, start_date)
+    datetime = start_date + 1.day
     until datetime >= self.due_date
       if datetime.strftime("%A").downcase == day
-        self.reminders.create(datetime: datetime.change({hour: time.hour, minute: time.min}))
+        reminders.create(datetime: datetime.change({hour: time.hour, minute: time.min}))
         datetime += 7.days
       else
         datetime += 1.day
