@@ -8,7 +8,7 @@ class TasksController < ApplicationController
       @days.each do |day, value|
         if value == '1'
           time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
-          @task.create_reminders(day, time, DateTime.now)
+          @task.create_reminders(day: day, time: time, start_date: DateTime.now)
         end
       end
       current_user.send_confirmation_reminder_text

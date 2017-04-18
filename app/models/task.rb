@@ -5,7 +5,10 @@ class Task < ApplicationRecord
   has_many :reminders
   accepts_nested_attributes_for :reminders
 
-  def create_reminders(day, time, start_date)
+  def create_reminders(args)
+    day = args.fetch(:day)
+    time = args.fetch(:time)
+    start_date = args.fetch(:start_date)
     datetime = start_date + 1.day
     until datetime >= self.due_date
       if datetime.strftime("%A").downcase == day
