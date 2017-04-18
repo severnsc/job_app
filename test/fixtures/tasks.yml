@@ -8,3 +8,4 @@ task:
   name: "Task"
   description: "This is a task"
   user: user
+  due_date: <%= DateTime.now + 7.days %>
