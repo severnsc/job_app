@@ -7,6 +7,7 @@ class RemindersController < ApplicationController
   def update
     @reminder = Reminder.find(params[:id])
     if @reminder.update_attributes(reminder_params)
+      @reminder.job.update_attribute(:run_at, params[:reminder][:datetime])
       flash[:success] = "Reminder updated!"
       redirect_to edit_task_path(@reminder.task)
     else
