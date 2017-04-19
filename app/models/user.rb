@@ -25,6 +25,10 @@ class User < ApplicationRecord
     tasks.where("completed = ?", true)
   end
 
+  def overdue_tasks
+    uncompleted_tasks.where("due_date < ?", Time.now)
+  end
+
   def new_twilio_client
     @client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
   end

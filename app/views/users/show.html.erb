@@ -21,6 +21,23 @@
         <% end %>
       </div>
     <% end %>
+    <% if @user.overdue_tasks.any? %>
+      <div class="tasks">
+        <h1>Overdue Tasks</h1>
+        <% @user.overdue_tasks.each do |task| %>
+          <div class="task">
+            <h3><%= task.name %></h3>
+            <p><%= task.description %></p>
+            <p><%= task.due_date.strftime("%-m/%e/%Y %l:%M %p") %></p>
+            <%= link_to "Edit", edit_task_path(task) %>
+            <%= form_for task, url: "/tasks/#{task.id}/complete" do |f| %>
+              <%= f.hidden_field :completed, value: "true" %>
+              <%= f.submit "Complete Task", class: "btn btn-primary" %>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
     <% if @user.completed_tasks.any? %>
       <div class="tasks">
         <h1>Completed Tasks</h1>

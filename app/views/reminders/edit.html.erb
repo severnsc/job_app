@@ -1,0 +1,15 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Edit Reminder</h1>
+    <%= form_for @reminder do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :datetime %>
+      <%= f.datetime_local_field :datetime, class: 'form-control' %>
+
+      <%= f.submit "Update reminder", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>
