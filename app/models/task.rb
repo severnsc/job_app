@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
   validates :name, presence: true
   validates :description, presence: true,length: {maximum: 255}
-  belongs_to :user
+  belongs_to :user, required: true
   has_many :reminders
   accepts_nested_attributes_for :reminders
 
