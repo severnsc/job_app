@@ -5,14 +5,16 @@ class TasksController < ApplicationController
     @task = current_user.tasks.build(task_params)
     if @task.save
       @days = params[:days]
-      @days.each do |day, value|
-        if value == '1'
-          time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
-          @task.create_reminders(day: day, time: time, start_date: DateTime.now)
+      unless @days.nil?
+        @days.each do |day, value|
+          if value == '1'
+            time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
+            @task.create_reminders(day: day, time: time, start_date: DateTime.now)
+          end
         end
       end
-      current_user.send_confirmation_reminder_text
       current_user.create_future_reminder_texts(@task)
+      current_user.send_confirmation_reminder_text if @task.reminders.any?
       flash[:success] = "Task created!"
       redirect_to current_user
     else
