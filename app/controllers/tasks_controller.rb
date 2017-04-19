@@ -39,7 +39,7 @@ class TasksController < ApplicationController
           if value == '1'
             time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
             reminders = @task.create_reminders(day: day, time: time, start_date: DateTime.now)
-            current_user.update_future_reminder_texts(reminders)
+            current_user.create_future_reminder_texts(reminders)
           end
         end
       end

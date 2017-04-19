@@ -8,7 +8,7 @@ class Task < ApplicationRecord
   def create_reminders(args)
     day = args.fetch(:day)
     time = args.fetch(:time)
-    start_date = args.fetch(:start_date)
+    start_date = args.fetch(:start_date, DateTime.now)
     created_reminders = []
     until start_date >= due_date
       if start_date.strftime("%A").downcase == day
