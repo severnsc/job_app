@@ -1,8 +1,9 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
-    <h1><%= @user.full_name %></h1>
-    <h2>Create a new task</h2>
+    <h1>Edit <%= @task.name %></h1>
     <%= form_for @task do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
 
       <%= f.label :name %>
       <%= f.text_field :name, class: 'form-control' %>
@@ -13,7 +14,7 @@
       <%= f.label :due_date %>
       <%= f.datetime_local_field :due_date, class: 'form-control' %>
 
-      <%= f.fields_for @task.reminders.build do |reminder| %>
+      <%= f.fields_for @task.reminders do |reminder| %>
 
         <%= f.label :datetime, class: 'checkbox inline' do %>
           
@@ -66,37 +67,9 @@
 
       <% end %>
 
-      <%= f.submit "Create Task", class: 'btn btn-primary' %>
+      <%= f.submit "Update Task", class: 'btn btn-primary' %>
 
-    <% end %>
-    <% if @user.uncompleted_tasks.any? %>
-      <div class="tasks">
-        <h1>Todo Tasks</h1>
-        <% @user.uncompleted_tasks.each do |task| %>
-          <div class="task">
-            <h3><%= task.name %></h3>
-            <p><%= task.description %></p>
-            <p><%= task.due_date.strftime("%-m/%e/%Y %l:%M %p") %></p>
-            <%= link_to "Edit", edit_task_path(task) %>
-            <%= form_for task, url: "/tasks/#{task.id}/complete" do |f| %>
-              <%= f.hidden_field :completed, value: "true" %>
-              <%= f.submit "Complete Task", class: "btn btn-primary" %>
-            <% end %>
-          </div>
-        <% end %>
-      </div>
-    <% end %>
-    <% if @user.completed_tasks.any? %>
-      <div class="tasks">
-        <h1>Completed Tasks</h1>
-        <% @user.completed_tasks.each do |task| %>
-          <div class="task">
-            <h3><%= task.name %></h3>
-            <p><%= task.description %></p>
-            <p><%= task.completed_at.strftime("%-m/%e/%Y %l:%M %p") %></p>
-          </div>
-        <% end %>
-      </div>
+
     <% end %>
   </div>
 </div>

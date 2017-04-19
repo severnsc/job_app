@@ -9,7 +9,7 @@ class Task < ApplicationRecord
     day = args.fetch(:day)
     time = args.fetch(:time)
     start_date = args.fetch(:start_date)
-    datetime = start_date + 1.day
+    datetime = start_date
     until datetime >= due_date
       if datetime.strftime("%A").downcase == day
         reminders.create(datetime: datetime.change({hour: time.hour, minute: time.min}))

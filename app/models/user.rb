@@ -34,7 +34,7 @@ class User < ApplicationRecord
     @client.messages.create(
       from: ENV['PHONE_NUMBER'],
       to: phone_number,
-      body: 'Your task has been created!'
+      body: 'Your reminders have been created!'
     )
   end
 

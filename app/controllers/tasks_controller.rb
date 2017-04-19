@@ -27,7 +27,33 @@ class TasksController < ApplicationController
     end
   end
 
+  def edit
+    @task = Task.find(params[:id])
+  end
+
   def update
+    @task = Task.find(params[:id])
+    if @task.update_attributes(task_params)
+      @days = params[:days]
+      byebug
+      unless @days.nil?
+        @days.each do |day, value|
+          if value == '1'
+            time = "#{params[:"#{day}_time"]} #{params[:time_zone]}".to_time
+            @task.create_reminders(day: day, time: time, start_date: DateTime.now)
+          end
+        end
+      end
+      current_user.create_future_reminder_texts(@task)
+      current_user.send_confirmation_reminder_text if @task.reminders.any?
+      flash[:success] = "Task updated!"
+      redirect_to current_user
+    else
+      render 'edit'
+    end
+  end
+
+  def complete
     @task = Task.find(params[:id])
     if params[:task][:completed] == "true"
       @task.update_attributes(completed: true, completed_at: Time.zone.now)
