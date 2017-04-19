@@ -1,0 +1,38 @@
+<% verb = yield(:verb) %>
+
+<%= form_for @task do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :name %>
+  <%= f.text_field :name, class: 'form-control' %>
+
+  <%= f.label :description %>
+  <%= f.text_area :description, class: 'form-control' %>
+
+  <%= f.label :due_date %>
+  <%= f.datetime_local_field :due_date, class: 'form-control' %>
+
+  <%= f.fields_for @task.reminders do |reminder| %>
+
+    <%= reminder.label :datetime, class: 'checkbox inline' do %>
+
+      <% Date::DAYNAMES.each do |day| %>
+      
+          <div>
+            <%= check_box_tag "days[#{day.downcase}]" %>
+            <span><%= day %></span>
+            <%= time_field_tag "#{day.downcase}_time", Time.now, class: 'time_box' %>
+          </div>
+
+        <%= hidden_field_tag "time_zone", Time.now.zone %>
+
+      <% end %>
+
+    <% end %>
+
+  <% end %>
+
+  <%= f.submit "#{verb} Task", class: 'btn btn-primary' %>
+
+<% end %>
