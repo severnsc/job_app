@@ -35,7 +35,6 @@ class TasksController < ApplicationController
     @task = Task.find(params[:id])
     if @task.update_attributes(task_params)
       @days = params[:days]
-      byebug
       unless @days.nil?
         @days.each do |day, value|
           if value == '1'
