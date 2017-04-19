@@ -21,4 +21,21 @@ class Task < ApplicationRecord
     created_reminders
   end
 
+  def create_reminder_texts(reminders)
+    @client = new_twilio_client
+    reminders.each do |reminder|
+      reminder.job = @client.messages.delay(run_at: reminder.datetime).create(
+        from: ENV['PHONE_NUMBER'],
+        to: user.phone_number,
+        body: reminder.task.description
+      )
+    end
+  end
+ 
+  private
+
+  def new_twilio_client
+    @client = Twilio::REST::Client.new ENV['TWILIO_SID'], ENV['TWILIO_TOKEN']
+  end
+
 end
