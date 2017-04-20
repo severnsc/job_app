@@ -39,6 +39,13 @@ class SurveysController < ApplicationController
     @surveys = Survey.all
   end
 
+  def destroy
+    @survey = Survey.find(params[:id])
+    @survey.delete
+    flash[:success] = "Survey deleted!"
+    redirect_to current_user
+  end
+
   private
 
   def survey_params

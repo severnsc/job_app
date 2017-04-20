@@ -13,6 +13,15 @@ class EditSurveyTest < ActionDispatch::IntegrationTest
     sign_in(@other_user)
     get edit_survey_path(@survey)
     assert_redirected_to user_path(@other_user)
+    survey_title = "New survey title"
+    question_content = "New question content"
+    patch survey_path(@survey), params: { survey: { title: survey_title,
+                                                    questions_attributes: {'0' => {
+                                                      content: question_content
+                                                      }}}}
+    assert_redirected_to user_path(@other_user)
+    assert_not_equal survey_title, @survey.reload.title
+    assert_not @survey.questions.any? {|q| q.content == question_content}
   end
 
   test "editing a survey" do
