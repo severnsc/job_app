@@ -6,6 +6,13 @@ class EditSurveyTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user)
     @survey = surveys(:survey)
+    @other_user = users(:other_user)
+  end
+
+  test "edit survey as incorrect user" do
+    sign_in(@other_user)
+    get edit_survey_path(@survey)
+    assert_redirected_to user_path(@other_user)
   end
 
   test "editing a survey" do

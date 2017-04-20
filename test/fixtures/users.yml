@@ -5,3 +5,11 @@ user:
   phone_number: '+15005550009'
   confirmed_at: <%= Time.zone.now %>
   encrypted_password: <%= User.new.send(:password_digest, "Password") %>
+
+other_user:
+  first_name: "Other"
+  last_name: "User"
+  email: "other_user@example.com"
+  phone_number: "+1234567890"
+  confirmed_at: <%= Time.zone.now %>
+  encrypted_password: <%= User.new.send(:password_digest, "Password") %>

@@ -1,5 +1,6 @@
 class SurveysController < ApplicationController
   before_action :authenticate_user!
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   def new
     @survey = Survey.new
@@ -34,9 +35,19 @@ class SurveysController < ApplicationController
     end
   end
 
+  def index
+    @surveys = Survey.all
+  end
+
   private
 
   def survey_params
     params.require(:survey).permit(:title, questions_attributes: [:content, answers_attributes: [:content]])
   end
+
+  def correct_user
+    @survey = current_user.surveys.find_by(id: params[:id])
+    redirect_to current_user if @survey.nil?
+  end
+
 end

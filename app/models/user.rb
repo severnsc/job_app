@@ -6,6 +6,7 @@ class User < ApplicationRecord
          :confirmable
   has_many :tasks
   has_many :jobs
+  has_many :surveys
   validates :first_name, presence: true
   validates :last_name, presence: true
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i
