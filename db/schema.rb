@@ -10,10 +10,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170419180848) do
+ActiveRecord::Schema.define(version: 20170420193117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "answers", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "survey_id"
+    t.integer  "question_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
+    t.index ["survey_id"], name: "index_answers_on_survey_id", using: :btree
+  end
 
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer  "priority",    default: 0, null: false
@@ -49,12 +59,28 @@ ActiveRecord::Schema.define(version: 20170419180848) do
     t.index ["user_id"], name: "index_jobs_on_user_id", using: :btree
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "content"
+    t.integer  "survey_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["survey_id"], name: "index_questions_on_survey_id", using: :btree
+  end
+
   create_table "reminders", force: :cascade do |t|
     t.datetime "datetime"
     t.integer  "task_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["task_id"], name: "index_reminders_on_task_id", using: :btree
+  end
+
+  create_table "surveys", force: :cascade do |t|
+    t.integer  "job_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "title"
+    t.index ["job_id"], name: "index_surveys_on_job_id", using: :btree
   end
 
   create_table "tasks", force: :cascade do |t|

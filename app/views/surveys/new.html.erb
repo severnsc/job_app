@@ -1,0 +1,22 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Create Survey</h1>
+    <%= form_for @survey do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.fields_for :questions, @survey.questions do |question| %>
+
+        <%= question.label :content %>
+        <%= question.text_field :content, class: 'form-control' %>
+
+      <% end %>
+
+      <%= f.submit "Create survey", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>

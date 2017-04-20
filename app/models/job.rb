@@ -2,6 +2,7 @@ class Job < ApplicationRecord
   before_save :downcase_email
 
   belongs_to :user
+  has_one :survey
   validates :position, presence: true
   validates :company, presence: true
   validates :location, presence: true
