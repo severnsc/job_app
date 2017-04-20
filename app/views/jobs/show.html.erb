@@ -1,6 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h1><%= @job.position %> at <%= @job.company %></h1>
+    <%= link_to "Take Survey", job_survey_path %>
     <p>Pay: <%= @job.pay %></p>
     <p>Location: <%= @job.location %></p>
     <p>Benefits: <%= @job.benefits %></p>
