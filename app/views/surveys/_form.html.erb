@@ -1,0 +1,19 @@
+<%= form_for @survey do |f| %>
+
+  <%= render 'shared/error_messages', object: f.object %>
+
+  <%= f.label :title %>
+  <%= f.text_field :title, class: 'form-control' %>
+
+  <h2>Questions</h2>
+
+    <%= f.fields_for :questions, @survey.questions do |question| %>
+
+      <%= question.label :content, "What do you want to ask?" %>
+      <%= question.text_field :content, class: 'form-control' %>
+
+    <% end %>
+
+  <%= f.submit yield(:button_text), class: 'btn btn-primary' %>
+
+<% end %>
