@@ -6,5 +6,7 @@
       <p><%= question.content %></p>
 
     <% end %>
+    <%= link_to "Edit", edit_survey_path(@survey) %>
+    <%= link_to "Delete", survey_path(@survey), method: :delete, data: {confirm: "Are you sure?"} %>
   </div>
 </div>

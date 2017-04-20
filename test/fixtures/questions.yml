@@ -1,7 +1,7 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+question_one:
+  content: "This is the first question"
+  survey: survey
 
-one:
-  content: MyString
-
-two:
-  content: MyString
+quesiton_two:
+  content: "This is the second quesiton"
+  survey: survey

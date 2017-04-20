@@ -20,7 +20,7 @@ class EditSurveyTest < ActionDispatch::IntegrationTest
                                                       content: question_content
                                                       }}}}
     assert_equal survey_title, @survey.reload.title
-    assert_equal question_content, @survey.questions.first.content
+    assert @survey.questions.any? {|q| q.content == question_content}
     assert_redirected_to survey_path(@survey)
     assert_not flash.empty?
     follow_redirect!
