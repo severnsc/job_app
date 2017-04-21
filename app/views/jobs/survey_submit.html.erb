@@ -1,0 +1,55 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Survey for <%= @job.position %> at <%= @job.company %></h1>
+    <%= form_for @survey, url: answers_path, method: :post do |f| %>
+
+      <h2><%= @survey.title %></h2>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <%= hidden_field_tag 'survey_id', @survey.id %>
+
+      <%= hidden_field_tag 'job_id', params[:id] %>
+
+      <% @answers.each_with_index do |answer, index| %>
+
+        <%= f.fields_for :answers, answer do |a| %>
+
+          <div class="survey">
+
+            <h3><%= @questions[index].content %></h3>
+
+            <p>
+
+            <span>Strongly Disagree</span>
+
+            <%= a.radio_button :content, '1' %>
+
+
+            <%= a.radio_button :content, '2' %>
+
+
+            <%= a.radio_button :content, '3' %>
+
+
+            <%= a.radio_button :content, '4' %>
+
+
+            <%= a.radio_button :content, '5' %>
+
+
+            <span>Strongly Agree</span>
+
+            </p>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+      <%= f.submit "Submit survey", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>

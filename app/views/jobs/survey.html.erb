@@ -1,0 +1,9 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1>Select Job Survey</h1>
+    <h2><%= link_to "Create a new survey", new_survey_path %> or select one from the dropdown below:</h2>
+    <%= form_tag(job_survey_submission_path(@job), method: :get) %>
+    <%= select_tag("survey_id", options_from_collection_for_select(@surveys, 'id', 'title'), class: 'form-control') %>
+    <%= submit_tag("Take Survey", class: 'btn btn-primary') %>
+  </div>
+</div>

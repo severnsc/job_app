@@ -5,7 +5,7 @@
     <% if @jobs.any? %>
       <% @jobs.each do |job| %>
         <div class="job">
-          <p><%= job.company %> | <%= job.position %> | <%= job.location %> | <%= link_to "Edit", edit_job_path(job) %> | <%= link_to "Delete", job_path(job), method: :delete, data: {confirm: "Are you sure?"} %></p>
+          <p><%= job.company %> | <%= job.position %> | <%= job.location %> | <%= link_to "View job", job_path(job) %> | <%= link_to "Edit", edit_job_path(job) %> | <%= link_to "Delete", job_path(job), method: :delete, data: {confirm: "Are you sure?"} %></p>
         </div>
       <% end %>
     <% else %>

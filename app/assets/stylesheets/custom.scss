@@ -256,3 +256,14 @@ input{
 #new_job_button > a{
   color: white;
 }
+
+/* Job Survey Submit Page */
+input[type="radio"]{
+  display: inline;
+  width: auto;
+  margin: 0 5px;
+}
+
+.survey{
+  text-align: center;
+}

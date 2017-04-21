@@ -44,6 +44,27 @@ class JobsController < ApplicationController
     redirect_to current_user
   end
 
+  def survey
+    @job = Job.find(params[:id])
+    @surveys = Survey.all
+  end
+
+  def survey_submit
+    @job = Job.find(params[:id])
+    if params[:survey_id]
+      @survey = Survey.find(params[:survey_id])
+      survey_answers = []
+      @survey.questions.count.times do |i|
+        survey_answers << @survey.answers.build
+        @survey.questions[i].answers.build
+      end
+      @questions = @survey.questions
+      @answers = survey_answers
+    else
+      redirect_to new_survey_path
+    end
+  end
+
   private
 
   def job_params
