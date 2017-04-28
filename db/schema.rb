@@ -10,19 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170428144303) do
+ActiveRecord::Schema.define(version: 20170428150115) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "answers", force: :cascade do |t|
     t.string   "content"
-    t.integer  "survey_id"
     t.integer  "question_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "submission_id"
     t.index ["question_id"], name: "index_answers_on_question_id", using: :btree
-    t.index ["survey_id"], name: "index_answers_on_survey_id", using: :btree
+    t.index ["submission_id"], name: "index_answers_on_submission_id", using: :btree
   end
 
   create_table "delayed_jobs", force: :cascade do |t|
