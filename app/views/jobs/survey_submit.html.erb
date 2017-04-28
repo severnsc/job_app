@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-6 col-md-offset-3">
     <h1>Survey for <%= @job.position %> at <%= @job.company %></h1>
-    <%= form_for @survey, url: answers_path, method: :post do |f| %>
+    <%= form_for @submission, url: answers_path, method: :post do |f| %>
 
       <h2><%= @survey.title %></h2>
 

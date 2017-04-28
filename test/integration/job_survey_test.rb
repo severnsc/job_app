@@ -7,6 +7,7 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
     @user = users(:user)
     @job = jobs(:job)
     @survey = surveys(:survey)
+    Submission.delete_all
   end
 
   test "take job suvey" do
@@ -27,6 +28,7 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
     assert_difference 'Answer.count', 2 do
       post answers_path, params: { survey: { answers_attributes: {"0" => {content: 5},
                                                                   "1" => {content: 4}}},
+                                   survey_id: @survey.id,
                                    job_id: @job.id}
     end
     assert_equal 1, Submission.count

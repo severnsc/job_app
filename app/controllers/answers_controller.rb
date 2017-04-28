@@ -3,10 +3,11 @@ class AnswersController < ApplicationController
   def create
     @survey = Survey.find(params["survey_id"])
     @job = Job.find(params["job_id"])
+    @submission = @survey.submissions.create!(job: @job, user: current_user)
     attrs = answers_params[:answers_attributes].to_h
     answers = []
     attrs.count.times do |i|
-      answer = @survey.answers.build(answers_params[:answers_attributes][i.to_s])
+      answer = @submission.answers.build(answers_params[:answers_attributes][i.to_s])
       answer.question = @survey.questions[i]
       answers << answer
     end
@@ -25,6 +26,6 @@ class AnswersController < ApplicationController
   private
 
   def answers_params
-    params.require(:survey).permit(answers_attributes: [:id, :content])
+    params.require(:submission).permit(answers_attributes: [:id, :content])
   end
 end
