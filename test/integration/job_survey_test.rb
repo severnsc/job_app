@@ -26,7 +26,7 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
       assert_match q.content, response.body
     end
     assert_difference 'Answer.count', 2 do
-      post answers_path, params: { survey: { answers_attributes: {"0" => {content: 5},
+      post answers_path, params: { submission: { answers_attributes: {"0" => {content: 5},
                                                                   "1" => {content: 4}}},
                                    survey_id: @survey.id,
                                    job_id: @job.id}
@@ -36,6 +36,7 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
     assert_not flash.empty?
     follow_redirect!
     assert_template 'jobs/show'
+    assert_match "Edit Submission", response.body
     assert_match "Survey Results", response.body
     assert_match "5", response.body
     assert_match "4", response.body
