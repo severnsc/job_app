@@ -2,6 +2,10 @@
 
 one:
   content: MyString
+  submission: submission
+  question: question_one
 
 two:
   content: MyString
+  submission: submission
+  question: question_two

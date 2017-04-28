@@ -6,6 +6,7 @@ class ShowJobTest < ActionDispatch::IntegrationTest
   def setup
     @user = users(:user)
     @job = jobs(:job)
+    Submission.delete_all
   end
 
   test "should have job information on page" do

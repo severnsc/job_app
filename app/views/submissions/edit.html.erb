@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <h1><%= @submission.survey.title %></h1>
+    <%= form_for(@submission) do |f| %>
+
+      <%= render 'shared/error_messages', object: f.object %>
+
+      <% @answers.each do |answer| %>
+
+        <%= f.fields_for :answers, answer do |a| %>
+
+          <div class="survey">
+
+            <h3><%= answer.question.content %></h3>
+
+            <p>
+
+            <span>Strongly Disagree</span>
+
+            <%= a.radio_button :content, '1' %>
+
+
+            <%= a.radio_button :content, '2' %>
+
+
+            <%= a.radio_button :content, '3' %>
+
+
+            <%= a.radio_button :content, '4' %>
+
+
+            <%= a.radio_button :content, '5' %>
+
+
+            <span>Strongly Agree</span>
+
+            </p>
+
+          </div>
+
+        <% end %>
+
+      <% end %>
+
+      <%= f.submit "Edit Submission", class: 'btn btn-primary' %>
+
+    <% end %>
+  </div>
+</div>
