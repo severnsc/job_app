@@ -53,13 +53,14 @@ class JobsController < ApplicationController
     @job = Job.find(params[:id])
     if params[:survey_id]
       @survey = Survey.find(params[:survey_id])
-      survey_answers = []
+      @submission = @survey.submissions.build
+      submission_answers = []
       @survey.questions.count.times do |i|
-        survey_answers << @survey.answers.build
+        submission_answers << @submission.answers.build
         @survey.questions[i].answers.build
       end
       @questions = @survey.questions
-      @answers = survey_answers
+      @answers = submission_answers
     else
       redirect_to new_survey_path
     end

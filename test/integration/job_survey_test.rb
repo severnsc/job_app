@@ -27,9 +27,9 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
     assert_difference 'Answer.count', 2 do
       post answers_path, params: { survey: { answers_attributes: {"0" => {content: 5},
                                                                   "1" => {content: 4}}},
-                                   survey_id: @survey.id,
                                    job_id: @job.id}
     end
+    assert_equal 1, Submission.count
     assert_redirected_to job_path(@job)
     assert_not flash.empty?
     follow_redirect!
