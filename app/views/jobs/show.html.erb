@@ -15,7 +15,7 @@
     <%= link_to "Delete", job_path(@job), method: :delete, data: {confirm: "Are you sure?"} %>
     <% unless @job.submission.nil? %>
         <h2>Survey Results</h2>
-        <% @job.submission.answers.each do |a| %>
+        <% @answers.each do |a| %>
             <p><%= a.question.content %>: <%= a.content %></p>
         <% end %>
     <% end %>

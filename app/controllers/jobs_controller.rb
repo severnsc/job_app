@@ -21,6 +21,7 @@ class JobsController < ApplicationController
 
   def show
     @job = Job.find(params[:id])
+    @answers = @job.submission.answers unless @job.submission.nil?
   end
 
   def edit
