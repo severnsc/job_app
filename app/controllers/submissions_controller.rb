@@ -3,7 +3,7 @@ class SubmissionsController < ApplicationController
 
   def edit
     @submission = Submission.find(params[:id])
-    @answers = @submission.answers
+    @answers = @submission.answers.order(id: :asc)
   end
 
   def update
