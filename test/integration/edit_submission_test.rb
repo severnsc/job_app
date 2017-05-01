@@ -7,6 +7,8 @@ class EditSubmissionTest < ActionDispatch::IntegrationTest
     @submission = submissions(:submission)
     @user = users(:user)
     @job = jobs(:job)
+    @answer_one = @submission.answers.first
+    @answer_two = @submission.answers.second
   end
 
   test "edit a submission from the job page" do
@@ -18,8 +20,8 @@ class EditSubmissionTest < ActionDispatch::IntegrationTest
     get edit_submission_path(@submission)
     assert_template 'submissions/edit'
     assert_select 'form[action=?]', submission_path(@submission)
-    patch submission_path(@submission), params: { submission: { answers_attributes: {"0" => {content: 5},
-                                                                  "1" => {content: 4}}}}
+    patch submission_path(@submission), params: { submission: { answers_attributes: {"0" => {content: 5, id: @answer_one.id},
+                                                                  "1" => {content: 4, id: @answer_two.id}}}}
     assert_redirected_to job_path(@job)
     assert_not flash.empty?
     follow_redirect!
