@@ -1,11 +1,11 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 one:
-  content: MyString
+  content: "MyString"
   submission: submission
   question: question_one
 
 two:
-  content: MyString
+  content: "MyString"
   submission: submission
   question: question_two

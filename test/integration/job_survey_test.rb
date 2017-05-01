@@ -38,6 +38,9 @@ class JobSurveyTest < ActionDispatch::IntegrationTest
     assert_template 'jobs/show'
     assert_match "Edit Submission", response.body
     assert_match "Survey Results", response.body
+    @survey.questions.each do |q|
+      assert_match q.content, response.body
+    end
     assert_match "5", response.body
     assert_match "4", response.body
   end
