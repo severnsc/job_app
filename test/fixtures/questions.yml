@@ -2,6 +2,6 @@ question_one:
   content: "This is the first question"
   survey: survey
 
-quesiton_two:
+question_two:
   content: "This is the second quesiton"
   survey: survey
